@@ -1,0 +1,39 @@
+Algorithme Analyse_Phrase
+Variables
+    car : Caractère
+    longueur, nb_mots, nb_voyelles : Entier
+Début
+    // Initialisation des compteurs
+    longueur <- 0
+    nb_mots <- 0
+    nb_voyelles <- 0
+
+    Ecrire("Entrez votre phrase (terminez par un point) :")
+
+    Répéter
+        Lire(car)
+        longueur <- longueur + 1
+
+        // Comptage des voyelles (majuscules et minuscules)
+        Si car = "a" OU car = "e" OU car = "i" OU car = "o" OU car = "u" OU car = "y" OU
+           car = "A" OU car = "E" OU car = "I" OU car = "O" OU car = "U" OU car = "Y" Alors
+            nb_voyelles <- nb_voyelles + 1
+        FinSi
+
+        // Comptage des mots (basé sur l'espace)
+        Si car = " " Alors
+            nb_mots <- nb_mots + 1
+        FinSi
+
+    Jusqu'à car = "."
+
+    // Ajustement pour le dernier mot (le point marque la fin du dernier mot sans espace après)
+    Si longueur > 1 Alors
+        nb_mots <- nb_mots + 1
+    FinSi
+
+    // Affichage des résultats
+    Ecrire("Longueur de la phrase : ", longueur)
+    Ecrire("Nombre de mots : ", nb_mots)
+    Ecrire("Nombre de voyelles : ", nb_voyelles)
+Fin
