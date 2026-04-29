@@ -1,0 +1,30 @@
+PROCEDURE dot_product(v1, v2 : TABLEAU DE REELS, VAR ps : REEL)
+VARIABLES
+    i : ENTIER
+DEBUT
+    ps <- 0
+    POUR i DE 0 A longueur(v1) - 1 FAIRE
+        ps <- ps + (v1[i] * v2[i])
+    FIN POUR
+FIN
+
+ALGORITHME VerificationOrthogonalite
+VARIABLES
+    V1, V2 : TABLEAU DE REELS
+    n, i, produit : REELS
+DEBUT
+    ECRIRE("Entrez le nombre de couples de vecteurs : ")
+    LIRE(n)
+
+    POUR i DE 1 A n FAIRE
+        // Saisie des vecteurs V1 et V2 (supposés de même dimension)
+        // ...
+        dot_product(V1, V2, produit)
+        
+        SI (produit = 0) ALORS
+            ECRIRE("Les vecteurs sont orthogonaux.")
+        SINON
+            ECRIRE("Les vecteurs ne sont pas orthogonaux.")
+        FIN SI
+    FIN POUR
+FIN
