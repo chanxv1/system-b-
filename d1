@@ -1,0 +1,42 @@
+ALGORITHME SommeElementsDistincts
+VARIABLES
+    ensemble1 : TABLEAU D'ENTIERS[4] // [3, 1, 7, 9]
+    ensemble2 : TABLEAU D'ENTIERS[5] // [2, 4, 1, 9, 3]
+    i, j, somme : ENTIERS
+    trouve : BOOLEEN
+
+DEBUT
+    somme <- 0
+    ensemble1 <- [3, 1, 7, 9]
+    ensemble2 <- [2, 4, 1, 9, 3]
+
+    // 1. Comparer chaque élément de ensemble1 avec ensemble2
+    POUR i DE 0 A longueur(ensemble1) - 1 FAIRE
+        trouve <- FAUX
+        POUR j DE 0 A longueur(ensemble2) - 1 FAIRE
+            SI (ensemble1[i] = ensemble2[j]) ALORS
+                trouve <- VRAI
+                BREAK // L'élément est commun, on arrête la boucle interne
+            FIN SI
+        FIN POUR
+        SI (trouve = FAUX) ALORS
+            somme <- somme + ensemble1[i]
+        FIN SI
+    FIN POUR
+
+    // 2. Comparer chaque élément de ensemble2 avec ensemble1
+    POUR i DE 0 A longueur(ensemble2) - 1 FAIRE
+        trouve <- FAUX
+        POUR j DE 0 A longueur(ensemble1) - 1 FAIRE
+            SI (ensemble2[i] = ensemble1[j]) ALORS
+                trouve <- VRAI
+                BREAK
+            FIN SI
+        FIN POUR
+        SI (trouve = FAUX) ALORS
+            somme <- somme + ensemble2[i]
+        FIN SI
+    FIN POUR
+
+    ECRIRE("La somme des éléments distincts est : ", somme)
+FIN
