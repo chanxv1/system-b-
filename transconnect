@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TransConnect - Mise en relation transport routier</title>
+    <style>
+        /* --- VARIABLES ET RESET --- */
+        :root {
+            --primary: #0f172a; /* Bleu nuit moderne */
+            --accent: #2563eb;  /* Bleu électrique pour l'action */
+            --accent-hover: #1d4ed8;
+            --text-dark: #334155;
+            --text-light: #f8fafc;
+            --bg-light: #f1f5f9;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* --- STRUCTURE DE LA PAGE --- */
+        header {
+            background-color: var(--primary);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), 
+                        url('https://unsplash.com') no-repeat center/cover;
+            color: var(--text-light);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem auto;
+            color: #cbd5e1;
+        }
+
+        .cta-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            font-weight: bold;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--text-light);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text-light);
+            color: var(--primary);
+        }
+
+        /* --- SECTION BÉNÉFICES --- */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .grid-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--bg-light);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border-top: 5px solid var(--accent);
+        }
+
+        .card h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .card li::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* --- SECTION ÉTAPES --- */
+        .bg-alt {
+            background-color: var(--bg-light);
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem;
+        }
+
+        .step-number {
+            background-color: var(--primary);
+            color: var(--text-light);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            font-weight: bold;
+        }
+
+        /* --- CONVERSION FORM --- */
+        .form-section {
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 2rem auto 0 auto;
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-container .btn {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        footer {
+            background-color: #020617;
+            color: #64748b;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .section { padding: 3rem 1rem; }
+            .form-container { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barre de navigation -->
+    <header>
+        <div class="logo">Trans<span>Connect</span></div>
+    </header>
+
+    <!-- Zone d'accroche (Hero) -->
+    <section class="hero">
+        <h1>Trouvez le bon transporteur.<br>Optimisez vos trajets.</h1>
+        <p>La plateforme de mise en relation directe entre expéditeurs de marchandises et professionnels du transport routier.</p>
+        <div class="cta-container">
+            <a href="#inscription" class="btn btn-primary">Je cherche un transporteur</a>
+            <a href="#inscription" class="btn btn-outline">Je suis transporteur</a>
+        </div>
+    </section>
+
+    <!-- Section Bénéfices (Double cible) -->
+    <section class="section">
+        <h2 class="section-title">Une solution, deux profils</h2>
+        <div class="grid-benefits">
+            <div class="card">
+                <h3>Pour les Expéditeurs</h3>
+                <ul>
+                    <li><strong>Prix compétitifs</strong> grâce à la mise en concurrence.</li>
+                    <li><strong>Transporteurs vérifiés</strong> (licences et assurances à jour).</li>
+                    <li><strong>Suivi en temps réel</strong> de l'avancement de vos frets.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Pour les Transporteurs</h3>
+                <ul>
+                    <li><strong>Zéro retour à vide</strong> en trouvant des chargements sur votre route.</li>
+                    <li><strong>Paiement garanti</strong> et facturation automatisée.</li>
+                    <li><strong>Gain de temps</strong> sans aucun démarchage téléphonique.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Comment ça marche -->
+    <section class="bg-alt">
+        <div class="section">
+            <h2 class="section-title">Comment ça marche ?</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Publiez</h4>
+                    <p>Déposez votre annonce de fret ou indiquez vos camions disponibles.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Comparez</h4>
+                    <p>Recevez et comparez les offres tarifaires en quelques minutes.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Expédiez</h4>
+                    <p>Validez la mise en relation et suivez le transport en toute sécurité.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulaire de capture (Landing Page Objectif) -->
+    <section class="form-section" id="inscription">
+        <h2>Rejoignez le réseau dès aujourd'hui</h2>
+        <p>Inscrivez-vous pour tester la version bêta gratuitement.</p>
+        
+        <div class="form-container">
+            <form action="#" method="POST" onsubmit="alert('Merci ! Votre inscription a bien été prise en compte.'); return false;">
+                <div class="form-group">
+                    <label for="profile">Vous êtes :</label>
+                    <select id="profile" name="profile" required>
+                        <option value="expediteur">Entreprise / Expéditeur</option>
+                        <option value="transporteur">Société de transport / Chauffeur</option>
+                    </select>
